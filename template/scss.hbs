@@ -4,35 +4,39 @@
   {{/each}}
 {{/each}}
 
-@mixin sprite-width($sprite) {
+$com-zlui-sprite-settings: (
+  display: inline-block
+) !global;
+
+@mixin com-zlui-sprite-width($sprite) {
   width: nth($sprite, 3);
 }
 
-@mixin sprite-height($sprite) {
+@mixin com-zlui-sprite-height($sprite) {
   height: nth($sprite, 4);
 }
 
-@function sprite-width($sprite) {
+@function com-zlui-sprite-width($sprite) {
   @return nth($sprite, 3);
 }
 
-@function sprite-height($sprite) {
+@function com-zlui-sprite-height($sprite) {
   @return nth($sprite, 4);
 }
 
-@mixin sprite-position($sprite) {
+@mixin com-zlui-sprite-position($sprite) {
   $sprite-offset-x: nth($sprite, 1);
   $sprite-offset-y: nth($sprite, 2);
   background-position: $sprite-offset-x  $sprite-offset-y;
 }
 
-@mixin sprite($sprite, $display: block) {
-  @include sprite-position($sprite);
+@mixin com-zlui-sprite($sprite, $display: map-get($com-zlui-sprite-settings, display)) {
+  @include com-zlui-sprite-position($sprite);
   background-repeat: no-repeat;
   overflow: hidden;
   display: $display;
-  @include sprite-width($sprite);
-  @include sprite-height($sprite);
+  @include com-zlui-sprite-width($sprite);
+  @include com-zlui-sprite-height($sprite);
 }
 
 {{#each layouts}}
